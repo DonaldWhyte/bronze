@@ -1,0 +1,13 @@
+[package]
+
+name = "bronze"
+version = "0.0.1"
+authors = [ "Donald Whyte <donaldwhyte0@gmail.com>" ]
+
+[lib]
+name = "bronze"
+path = "src/lib.rs"
+
+[[bin]]
+name = "bronze"
+path = "src/bin/main.rs"
