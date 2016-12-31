@@ -24,17 +24,17 @@ impl LfuMetadata {
     }
 }
 
-pub struct LfuEvictionPolicy<K: Eq + Hash> {
+pub struct LfuEvictionPolicy<K: Eq + Hash, RNG: rand::Rng> {
     metadata: HashMap<K, LfuMetadata>,
-    rng: rand::ThreadRng,
+    rng: RNG,
     start_timestamp_in_mins: i64,
 }
 
-impl<K: Eq + Hash> LfuEvictionPolicy<K> {
-    pub fn new(start_timestamp: i64) -> LfuEvictionPolicy<K> {
+impl<K: Eq + Hash, RNG: rand::Rng> LfuEvictionPolicy<K, RNG> {
+    pub fn new(rng: RNG, start_timestamp: i64) -> LfuEvictionPolicy<K, RNG> {
         LfuEvictionPolicy {
             metadata: HashMap::new(),
-            rng: rand::thread_rng(),
+            rng: rng,
             start_timestamp_in_mins: start_timestamp / 60,
         }
     }
@@ -51,7 +51,8 @@ impl<K: Eq + Hash> LfuEvictionPolicy<K> {
 
 }
 
-impl<K: Eq + Hash, V> EvictionPolicy<K, V> for LfuEvictionPolicy<K> {
+impl<K: Eq + Hash, V, RNG: rand::Rng> EvictionPolicy<K, V>
+    for LfuEvictionPolicy<K, RNG> {
 
     // Metadata management
     fn update_metadata_on_get(&mut self, key: K) {

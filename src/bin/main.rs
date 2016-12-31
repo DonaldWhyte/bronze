@@ -1,4 +1,5 @@
 extern crate bronze;
+extern crate rand;
 extern crate time;
 use bronze::store::Store;
 use bronze::value_stores::HashMapValueStore;
@@ -11,8 +12,8 @@ fn main() {
     let value_store : HashMapValueStore<Key, Value> = HashMapValueStore::new();
 
     let start_time_in_epoch_seconds = time::now_utc().to_timespec().sec;
-    let eviction_policy : LfuEvictionPolicy<Key> = LfuEvictionPolicy::new(
-        start_time_in_epoch_seconds);
+    let eviction_policy : LfuEvictionPolicy<Key, _> = LfuEvictionPolicy::new(
+        rand::thread_rng(), start_time_in_epoch_seconds);
 
     let mut store = Store::new(value_store, eviction_policy);
 
