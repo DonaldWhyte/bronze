@@ -14,3 +14,4 @@ path = "src/bin/main.rs"
 
 [dependencies]
 time = "*"
+rand = "*"
