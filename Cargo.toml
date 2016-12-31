@@ -11,3 +11,6 @@ path = "src/lib.rs"
 [[bin]]
 name = "bronze"
 path = "src/bin/main.rs"
+
+[dependencies]
+time = "*"
