@@ -1,9 +1,9 @@
 extern crate bronze;
 extern crate time;
+use bronze::store::Store;
+use bronze::value_stores::HashMapValueStore;
+use bronze::metadata_stores::HashMapMetadataStore;
 
-use bronze::Store;
-use bronze::HashMapValueStore;
-use bronze::HashMapMetadataStore;
 
 fn main() {
     let value_store : HashMapValueStore<i32, i32> = HashMapValueStore::new();
