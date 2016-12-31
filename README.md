@@ -10,3 +10,5 @@ Single-threaded in-memory cache implemented in Rust.
         - `should_evict` and `choose_keys_to_evict`?
 - [ ] Implement LFU eviction policy
 - [ ] Come up framework/scripts to test efficiency of eviction policies
+- [ ] Document everything
+- [ ] Write unit tests for everything
