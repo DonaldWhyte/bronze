@@ -1,6 +1,6 @@
 pub struct StoreStats {
-    num_keys: u64,
-    total_memory_in_bytes: u64,
+    pub num_keys: u64,
+    pub total_memory_in_bytes: u64,
 }
 
 impl StoreStats {
