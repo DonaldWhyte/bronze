@@ -39,9 +39,9 @@ pub struct Store<K: Clone,
 {
     value_store: KVStore,
     eviction_policy: EvPolicy,
-    // Terrible hack to allow this struct to take the ValueStore and
-    // EvictionPolicy traits and constrain them to having the same types for the
-    // keys (K) and the values (V).
+    // Hack to allow this struct to take the ValueStore and EvictionPolicy
+    // traits and constrain them to having the same types for the keys (K) and
+    // the values (V).
     // TODO: find a better way to achieve this
     __hack1: Option<K>,
     __hack2: Option<V>,

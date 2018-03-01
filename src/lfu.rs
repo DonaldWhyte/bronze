@@ -53,7 +53,7 @@ impl<K: Eq + Hash, RNG: rand::Rng> LfuEvictionPolicy<K, RNG> {
         let r = self.rng.next_f64();
         let start_timestamp_in_mins = self.start_timestamp_in_mins;
 
-        let mut meta = self.metadata.entry(key).or_insert(LfuMetadata::new());
+        let meta = self.metadata.entry(key).or_insert(LfuMetadata::new());
         meta.use_counter = increment_use_counter(meta.use_counter, r);
         meta.last_used_timestamp_in_mins = time_relative_to_start(
             start_timestamp_in_mins);

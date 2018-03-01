@@ -1,7 +1,7 @@
-
 extern crate bronze;
 extern crate rand;
 extern crate time;
+
 use bronze::store::Store;
 use bronze::value_stores::HashMapValueStore;
 use bronze::lfu::LfuEvictionPolicy;
@@ -9,9 +9,8 @@ use bronze::lfu::LfuEvictionPolicy;
 type Key = u32;
 type Value = u32;
 
-fn main() {
-    // TODO: load config
-
+#[test]
+fn inmemory_lfu_store() {
     let value_store : HashMapValueStore<Key, Value> = HashMapValueStore::new();
 
     let start_time_in_epoch_seconds = time::now_utc().to_timespec().sec;
@@ -27,5 +26,16 @@ fn main() {
 
     let mut store = Store::new(value_store, eviction_policy);
 
-    // TODO
+    store.set(5, 32);
+
+    for _ in 1..50 {
+        match store.get(&5) {
+            Some(value) => println!("Key found: {}", value),
+            None => println!("Key not found")
+        }
+    }
+    match store.get(&6) {
+        Some(value) => println!("Key found: {}", value),
+        None => println!("Key not found")
+    }
 }

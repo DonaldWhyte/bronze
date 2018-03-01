@@ -15,3 +15,4 @@ path = "src/bin/main.rs"
 [dependencies]
 time = "*"
 rand = "*"
+yaml-rust = "0.4"
